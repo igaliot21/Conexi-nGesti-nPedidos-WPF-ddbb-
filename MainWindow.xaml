@@ -6,10 +6,12 @@
         xmlns:local="clr-namespace:ConexiónGestiónPedidos"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="0,0,-8,0">
         <Label Content="Clientes" HorizontalAlignment="Left" Margin="42,39,0,0" VerticalAlignment="Top"></Label>
         <ListBox x:Name="lstClientes" HorizontalAlignment="Left" Height="216" Margin="42,70,0,0" VerticalAlignment="Top" Width="206" SelectionChanged="lstClientes_SelectionChanged" />
-        <Label Content="Pedidos" HorizontalAlignment="Left" Margin="302,39,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.202,0.538"/>
-        <ListBox x:Name="lstPedidos" HorizontalAlignment="Left" Height="216" Margin="302,70,0,0" VerticalAlignment="Top" Width="206"/>
+        <Label Content="Pedidos Cliente" HorizontalAlignment="Left" Margin="289,39,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.202,0.538"/>
+        <ListBox x:Name="lstPedidos" HorizontalAlignment="Left" Height="216" Margin="289,70,0,0" VerticalAlignment="Top" Width="206"/>
+        <Label Content="Pedidos" HorizontalAlignment="Left" Margin="541,39,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.202,0.538"/>
+        <ListBox x:Name="lstTodosPedidos" HorizontalAlignment="Left" Height="216" Margin="541,70,0,0" VerticalAlignment="Top" Width="206"/>
     </Grid>
 </Window>

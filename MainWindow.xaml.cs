@@ -30,6 +30,7 @@ namespace ConexiónGestiónPedidos
             string miConexion = ConfigurationManager.ConnectionStrings["ConexiónGestiónPedidos.Properties.Settings.GestionPedidosConnectionString"].ConnectionString;
             conn = new SqlConnection(miConexion);
             MuestraClientes();
+            CargarPedidos();
         }
         private void MuestraClientes() {
             string consulta = "Select * from cliente";
@@ -46,9 +47,9 @@ namespace ConexiónGestiónPedidos
         private void lstClientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             //MessageBox.Show($"Click en el cliente: {lstClientes.SelectedValue}");
-            CargarPedidos(lstClientes.SelectedValue.ToString());
+            CargarPedidoCliente(lstClientes.SelectedValue.ToString());
         }
-        private void CargarPedidos(string cliente) {
+        private void CargarPedidoCliente(string cliente) {
             /*
             string consulta = "Select * from Pedido where fkCliente = " + cliente;
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, conn);
@@ -72,6 +73,19 @@ namespace ConexiónGestiónPedidos
                 lstPedidos.DisplayMemberPath = "FechaPedido";
                 lstPedidos.SelectedValuePath = "pkPedido";
             }
+        }
+        private void CargarPedidos() {
+            string consulta = "Select CONCAT(FechaPedido, ' ', FormaPago) AS ResumenPedido, pkPedido from Pedido";
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, conn);
+            using (sqlDataAdapter)
+            {
+                DataTable tablaPedidos = new DataTable();
+                sqlDataAdapter.Fill(tablaPedidos);
+                lstTodosPedidos.ItemsSource = tablaPedidos.DefaultView;
+                lstTodosPedidos.DisplayMemberPath = "ResumenPedido";
+                lstTodosPedidos.SelectedValuePath = "pkPedido";
+            }
+
         }
     }
 }
