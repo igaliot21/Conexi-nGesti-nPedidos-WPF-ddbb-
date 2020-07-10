@@ -13,5 +13,6 @@
         <ListBox x:Name="lstPedidos" HorizontalAlignment="Left" Height="216" Margin="289,70,0,0" VerticalAlignment="Top" Width="206"/>
         <Label Content="Pedidos" HorizontalAlignment="Left" Margin="541,39,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.202,0.538"/>
         <ListBox x:Name="lstTodosPedidos" HorizontalAlignment="Left" Height="216" Margin="541,70,0,0" VerticalAlignment="Top" Width="206"/>
+        <Button x:Name="btnBorrarPedido" Content="Borrar Pedido" HorizontalAlignment="Left" Margin="541,303,0,0" VerticalAlignment="Top" Width="109" Click="btnBorrarPedido_Click"/>
     </Grid>
 </Window>

@@ -87,5 +87,25 @@ namespace ConexiónGestiónPedidos
             }
 
         }
+
+        private void btnBorrarPedido_Click(object sender, RoutedEventArgs e)
+        {
+            /*
+            if (lstTodosPedidos.SelectedValue == null)
+                MessageBox.Show("Selecciona un pedido");
+            else
+            {
+                MessageBox.Show($"Eliminar el pedido {lstTodosPedidos.SelectedValue.ToString()}");
+            }
+            */
+            string consulta = "DELETE from Pedido WHERE pkPedido=@PedidoId";
+            SqlCommand sqlComando = new SqlCommand(consulta, conn);
+            conn.Open();
+            sqlComando.Parameters.AddWithValue("@PedidoId", lstTodosPedidos.SelectedValue.ToString());
+            sqlComando.ExecuteNonQuery();
+            conn.Close();
+            CargarPedidos();
+
+        }
     }
 }
