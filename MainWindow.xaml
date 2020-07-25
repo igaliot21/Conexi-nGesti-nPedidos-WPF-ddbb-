@@ -5,14 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ConexiónGestiónPedidos"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="540.449" Width="800">
     <Grid Margin="0,0,-8,0">
         <Label Content="Clientes" HorizontalAlignment="Left" Margin="42,39,0,0" VerticalAlignment="Top"></Label>
-        <ListBox x:Name="lstClientes" HorizontalAlignment="Left" Height="216" Margin="42,70,0,0" VerticalAlignment="Top" Width="206" SelectionChanged="lstClientes_SelectionChanged" />
+        <ListBox x:Name="lstClientes" HorizontalAlignment="Left" Height="216" Margin="42,70,0,0" VerticalAlignment="Top" Width="206" MouseDoubleClick="lstClientes_MouseDoubleClick" />
         <Label Content="Pedidos Cliente" HorizontalAlignment="Left" Margin="289,39,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.202,0.538"/>
         <ListBox x:Name="lstPedidos" HorizontalAlignment="Left" Height="216" Margin="289,70,0,0" VerticalAlignment="Top" Width="206"/>
         <Label Content="Pedidos" HorizontalAlignment="Left" Margin="541,39,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.202,0.538"/>
         <ListBox x:Name="lstTodosPedidos" HorizontalAlignment="Left" Height="216" Margin="541,70,0,0" VerticalAlignment="Top" Width="206"/>
         <Button x:Name="btnBorrarPedido" Content="Borrar Pedido" HorizontalAlignment="Left" Margin="541,303,0,0" VerticalAlignment="Top" Width="109" Click="btnBorrarPedido_Click"/>
+        <Button Content="Insertar" x:Name="btnInsertarCliente" HorizontalAlignment="Left" Margin="41,464,0,0" VerticalAlignment="Top" Width="120" Click="btnInsertarCliente_Click"/>
+        <Button Content="Borrar" x:Name="btnBorrarCliente" HorizontalAlignment="Left" Margin="183,464,0,0" VerticalAlignment="Top" Width="120" Click="btnBorrarCliente_Click"/>
+        <Label Content="Nombre:" HorizontalAlignment="Left" Margin="41,324,0,0" VerticalAlignment="Top"/>
+        <Label Content="Dirección:" HorizontalAlignment="Left" Margin="41,355,0,0" VerticalAlignment="Top"/>
+        <Label Content="Población:" HorizontalAlignment="Left" Margin="41,386,0,0" VerticalAlignment="Top"/>
+        <Label Content="Teléfono:" HorizontalAlignment="Left" Margin="41,417,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtNombre" HorizontalAlignment="Left" Height="23" Margin="147,327,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="156"/>
+        <TextBox x:Name="txtDireccion" HorizontalAlignment="Left" Height="23" Margin="147,358,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="156"/>
+        <TextBox x:Name="txtPoblacion" HorizontalAlignment="Left" Height="23" Margin="147,389,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="156"/>
+        <TextBox x:Name="txtTelefono" HorizontalAlignment="Left" Height="23" Margin="147,420,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="156"/>
     </Grid>
 </Window>

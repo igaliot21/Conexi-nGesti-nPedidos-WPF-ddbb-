@@ -33,79 +33,144 @@ namespace ConexiónGestiónPedidos
             CargarPedidos();
         }
         private void MuestraClientes() {
-            string consulta = "Select * from cliente";
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, conn);
-            using (sqlDataAdapter) {
-                DataTable tablaCLientes = new DataTable();
-                sqlDataAdapter.Fill(tablaCLientes);
-                lstClientes.ItemsSource = tablaCLientes.DefaultView;
-                lstClientes.DisplayMemberPath = "NombreCliente";
-                lstClientes.SelectedValuePath = "pkCliente";
+            try {
+                string consulta = "Select * from cliente";
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, conn);
+                using (sqlDataAdapter)
+                {
+                    DataTable tablaCLientes = new DataTable();
+                    sqlDataAdapter.Fill(tablaCLientes);
+                    lstClientes.ItemsSource = tablaCLientes.DefaultView;
+                    lstClientes.DisplayMemberPath = "NombreCliente";
+                    lstClientes.SelectedValuePath = "pkCliente";
+                }
+            }catch (Exception ex) {
+                MessageBox.Show(ex.Message);
             }
         }
-
-        private void lstClientes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+       
+        private void lstClientes_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             //MessageBox.Show($"Click en el cliente: {lstClientes.SelectedValue}");
             CargarPedidoCliente(lstClientes.SelectedValue.ToString());
         }
         private void CargarPedidoCliente(string cliente) {
-            /*
-            string consulta = "Select * from Pedido where fkCliente = " + cliente;
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, conn);
-            using (sqlDataAdapter)
-            {
-                DataTable tablaPedidos = new DataTable();
-                sqlDataAdapter.Fill(tablaPedidos);
-                lstPedidos.ItemsSource = tablaPedidos.DefaultView;
-                lstPedidos.DisplayMemberPath = "FechaPedido";
-                lstPedidos.SelectedValuePath = "pkPedido";
-            }
-            */
-            string consulta = "Select * from Pedido p left join Cliente c on p.fkCliente = c.pkCliente where c.pkCliente=@ClienteID";  // lo otro tb funciona pero ok... puede ser interesante para otros temas
-            SqlCommand sqlComando = new SqlCommand(consulta, conn);
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlComando);
-            using (sqlDataAdapter) {
-                sqlComando.Parameters.AddWithValue("@ClienteID", cliente);
-                DataTable tablaPedidos = new DataTable();
-                sqlDataAdapter.Fill(tablaPedidos);
-                lstPedidos.ItemsSource = tablaPedidos.DefaultView;
-                lstPedidos.DisplayMemberPath = "FechaPedido";
-                lstPedidos.SelectedValuePath = "pkPedido";
+            try{
+                /*
+                string consulta = "Select * from Pedido where fkCliente = " + cliente;
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, conn);
+                using (sqlDataAdapter)
+                {
+                    DataTable tablaPedidos = new DataTable();
+                    sqlDataAdapter.Fill(tablaPedidos);
+                    lstPedidos.ItemsSource = tablaPedidos.DefaultView;
+                    lstPedidos.DisplayMemberPath = "FechaPedido";
+                    lstPedidos.SelectedValuePath = "pkPedido";
+                }
+                */
+                string consulta = "Select * from Pedido p left join Cliente c on p.fkCliente = c.pkCliente where c.pkCliente=@ClienteID";  // lo otro tb funciona pero ok... puede ser interesante para otros temas
+                SqlCommand sqlComando = new SqlCommand(consulta, conn);
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(sqlComando);
+                using (sqlDataAdapter)
+                {
+                    sqlComando.Parameters.AddWithValue("@ClienteID", cliente);
+                    DataTable tablaPedidos = new DataTable();
+                    sqlDataAdapter.Fill(tablaPedidos);
+                    lstPedidos.ItemsSource = tablaPedidos.DefaultView;
+                    lstPedidos.DisplayMemberPath = "FechaPedido";
+                    lstPedidos.SelectedValuePath = "pkPedido";
+                }
+            }catch (Exception ex) {
+                MessageBox.Show(ex.Message);
             }
         }
         private void CargarPedidos() {
-            string consulta = "Select CONCAT(FechaPedido, ' ', FormaPago) AS ResumenPedido, pkPedido from Pedido";
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, conn);
-            using (sqlDataAdapter)
-            {
-                DataTable tablaPedidos = new DataTable();
-                sqlDataAdapter.Fill(tablaPedidos);
-                lstTodosPedidos.ItemsSource = tablaPedidos.DefaultView;
-                lstTodosPedidos.DisplayMemberPath = "ResumenPedido";
-                lstTodosPedidos.SelectedValuePath = "pkPedido";
+            try{
+                string consulta = "Select CONCAT(FechaPedido, ' ', FormaPago) AS ResumenPedido, pkPedido from Pedido";
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(consulta, conn);
+                using (sqlDataAdapter)
+                {
+                    DataTable tablaPedidos = new DataTable();
+                    sqlDataAdapter.Fill(tablaPedidos);
+                    lstTodosPedidos.ItemsSource = tablaPedidos.DefaultView;
+                    lstTodosPedidos.DisplayMemberPath = "ResumenPedido";
+                    lstTodosPedidos.SelectedValuePath = "pkPedido";
+                }
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
             }
 
         }
 
         private void btnBorrarPedido_Click(object sender, RoutedEventArgs e)
         {
-            /*
-            if (lstTodosPedidos.SelectedValue == null)
-                MessageBox.Show("Selecciona un pedido");
-            else
+            try
             {
-                MessageBox.Show($"Eliminar el pedido {lstTodosPedidos.SelectedValue.ToString()}");
+                /*
+                if (lstTodosPedidos.SelectedValue == null)
+                    MessageBox.Show("Selecciona un pedido");
+                else
+                {
+                    MessageBox.Show($"Eliminar el pedido {lstTodosPedidos.SelectedValue.ToString()}");
+                }
+                */
+                string consulta = "DELETE from Pedido WHERE pkPedido=@PedidoId";
+                SqlCommand sqlComando = new SqlCommand(consulta, conn);
+                conn.Open();
+                sqlComando.Parameters.AddWithValue("@PedidoId", lstTodosPedidos.SelectedValue.ToString());
+                sqlComando.ExecuteNonQuery();
+                conn.Close();
+                CargarPedidos();
             }
-            */
-            string consulta = "DELETE from Pedido WHERE pkPedido=@PedidoId";
-            SqlCommand sqlComando = new SqlCommand(consulta, conn);
-            conn.Open();
-            sqlComando.Parameters.AddWithValue("@PedidoId", lstTodosPedidos.SelectedValue.ToString());
-            sqlComando.ExecuteNonQuery();
-            conn.Close();
-            CargarPedidos();
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
+        private void btnInsertarCliente_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string consulta = "Insert into Cliente (NombreCliente, Direccion, Poblacion, Telefono) values (@NombreCliente, @Direccion, @Poblacion, @Telefono)";
+                SqlCommand sqlComando = new SqlCommand(consulta, conn);
+                conn.Open();
+                sqlComando.Parameters.AddWithValue("@NombreCliente", txtNombre.Text);
+                sqlComando.Parameters.AddWithValue("@Direccion", txtDireccion.Text);
+                sqlComando.Parameters.AddWithValue("@Poblacion", txtPoblacion.Text);
+                sqlComando.Parameters.AddWithValue("@Telefono", txtTelefono.Text);
+                sqlComando.ExecuteNonQuery();
+                conn.Close();
+                txtNombre.Text = "";
+                txtDireccion.Text = "";
+                txtPoblacion.Text = "";
+                txtTelefono.Text = "";
+                MuestraClientes();
+            }
+            catch (Exception ex) {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnBorrarCliente_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string consulta = "DELETE from Cliente WHERE pkCliente=@ClienteId";
+                SqlCommand sqlComando = new SqlCommand(consulta, conn);
+                conn.Open();
+                sqlComando.Parameters.AddWithValue("@ClienteId", lstClientes.SelectedValue.ToString());
+                sqlComando.ExecuteNonQuery();
+                conn.Close();
+                txtNombre.Text = "";
+                txtDireccion.Text = "";
+                txtPoblacion.Text = "";
+                txtTelefono.Text = "";
+                MuestraClientes();
+            }
+            catch (Exception ex){
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
