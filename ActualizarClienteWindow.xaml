@@ -1,0 +1,20 @@
+﻿<Window x:Class="ConexiónGestiónPedidos.ActualizarClienteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ConexiónGestiónPedidos"
+        mc:Ignorable="d"
+        Title="Actualizar Cliente" Height="300" Width="250" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <StackPanel Margin="20">
+        <Label Content="Nombre:"/>
+        <TextBox x:Name="txtNombre" Text=""/>
+        <Label Content="Dirección:"/>        
+        <TextBox x:Name="txtDireccion" Text=""/>
+        <Label Content="Población:"/>            
+        <TextBox x:Name="txtPoblacion" Text=""/>
+        <Label Content="Teléfono:"/>                    
+        <TextBox x:Name="txtTelefono" Text=""/>
+        <Button Content="Actualizar" x:Name="btnActualizarCliente" Margin="0 20 0 0" Click="btnActualizarCliente_Click"/>
+    </StackPanel>    
+</Window>

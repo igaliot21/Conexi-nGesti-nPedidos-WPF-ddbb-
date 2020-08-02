@@ -172,5 +172,11 @@ namespace ConexiónGestiónPedidos
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnActualizarCliente_Click(object sender, RoutedEventArgs e)
+        {
+            ActualizarClienteWindow ActualizarClienteVentana = new ActualizarClienteWindow(lstClientes.SelectedValue.ToString());
+            ActualizarClienteVentana.ShowDialog();
+        }
     }
 }
