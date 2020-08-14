@@ -24,12 +24,11 @@ namespace ConexiónGestiónPedidos
     {
         string clienteId;
         SqlConnection conn;
-        public ActualizarClienteWindow(string id)
+        public ActualizarClienteWindow(string id, SqlConnection conn)
         {
             InitializeComponent();
             this.clienteId = id;
-            string miConexion = ConfigurationManager.ConnectionStrings["ConexiónGestiónPedidos.Properties.Settings.GestionPedidosConnectionString"].ConnectionString;
-            conn = new SqlConnection(miConexion);
+            this.conn = conn;
             CargaCliente();
         }
 

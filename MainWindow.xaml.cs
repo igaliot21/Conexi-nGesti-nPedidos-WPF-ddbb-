@@ -175,7 +175,7 @@ namespace ConexiónGestiónPedidos
 
         private void btnActualizarCliente_Click(object sender, RoutedEventArgs e)
         {
-            ActualizarClienteWindow ActualizarClienteVentana = new ActualizarClienteWindow(lstClientes.SelectedValue.ToString());
+            ActualizarClienteWindow ActualizarClienteVentana = new ActualizarClienteWindow(lstClientes.SelectedValue.ToString(),conn);
             ActualizarClienteVentana.ShowDialog();
         }
     }
