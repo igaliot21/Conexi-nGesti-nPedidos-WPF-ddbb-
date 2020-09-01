@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ConexiónGestiónPedidos"
         mc:Ignorable="d"
-        Title="MainWindow" Height="540.449" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize">
+        Title="MainWindow" Height="540.449" Width="800" 
+        WindowStartupLocation="CenterScreen" ResizeMode="CanMinimize"
+        Activated="Window_Activated">
     <Grid Margin="0,0,-8,0">
         <Label Content="Clientes" HorizontalAlignment="Left" Margin="42,39,0,0" VerticalAlignment="Top"></Label>
         <ListBox x:Name="lstClientes" HorizontalAlignment="Left" Height="216" Margin="42,70,0,0" VerticalAlignment="Top" Width="206" MouseDoubleClick="lstClientes_MouseDoubleClick" />

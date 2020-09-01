@@ -29,8 +29,8 @@ namespace ConexiónGestiónPedidos
             InitializeComponent();
             string miConexion = ConfigurationManager.ConnectionStrings["ConexiónGestiónPedidos.Properties.Settings.GestionPedidosConnectionString"].ConnectionString;
             conn = new SqlConnection(miConexion);
-            MuestraClientes();
-            CargarPedidos();
+            //MuestraClientes();
+            //CargarPedidos();
         }
         private void MuestraClientes() {
             try {
@@ -177,6 +177,13 @@ namespace ConexiónGestiónPedidos
         {
             ActualizarClienteWindow ActualizarClienteVentana = new ActualizarClienteWindow(lstClientes.SelectedValue.ToString(),conn);
             ActualizarClienteVentana.ShowDialog();
+            //ActualizarClienteVentana.ShowDialog();
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            this.MuestraClientes();
+            this.CargarPedidos();
         }
     }
 }
